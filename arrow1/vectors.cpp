@@ -21,6 +21,13 @@ void display(vector<string> &vec){
     }
 }
 
+// template <class X_TYPE>
+// void display(vector<X_TYPE> &vec){
+//     for(auto ele: vec){
+//         cout << ele << " ";
+//     }
+// }
+
 int main(int argc, char **argv){
     // int a[10];
     // vector<int> a = {1,2,3,4};

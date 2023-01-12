@@ -20,6 +20,16 @@ int main(int argc, char **argv){
     int* a_pt = &a;
     double* b_pt = &b;
 
+    int** a_ptpt = &a_pt;
+
+    // a
+    // a_pt
+    // a_ptpt
+
+    // *(*(a_ptpt))
+    
+    // **a_ptpt
+
     char g = 0;
 
     // Example ob;
