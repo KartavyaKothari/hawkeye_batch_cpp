@@ -16,24 +16,24 @@ bool cmp_desc(int a, int b){
     return a > b;
 }
 
-void selection_sort(vector<int> &arr){
-    cout<<"Calling selection_sort"<<endl;
+void bubble_sort(vector<int> &arr){
+    cout<<"Calling bubble_sort"<<endl;
 
     for(int i=0; i<arr.size(); i++){
-        int min_ele_idx = i;
+        for(int j=0; j<arr.size()-1; j++){
+            if(!cmp_asc(arr[j],arr[j+1])){
+                swap(arr[j],arr[j+1]);
 
-        for(int j=i+1; j<arr.size(); j++){
-            if(cmp_desc(arr[j],arr[min_ele_idx])){
-                min_ele_idx = j;
+                // int temp = arr[i];
+                // arr[i] = arr[j];
+                // arr[j] = temp;
             }
         }
-
-        swap(arr[i], arr[min_ele_idx]);
     }
 }
 
 void sort(vector<int> &arr){
-    selection_sort(arr);
+    bubble_sort(arr);
 }
 
 int main(int argc, char **argv){

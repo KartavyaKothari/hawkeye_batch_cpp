@@ -16,24 +16,25 @@ bool cmp_desc(int a, int b){
     return a > b;
 }
 
-void selection_sort(vector<int> &arr){
-    cout<<"Calling selection_sort"<<endl;
+void insertion_sort(vector<int> &arr){
+    cout<<"Calling insertion_sort"<<endl;
 
-    for(int i=0; i<arr.size(); i++){
-        int min_ele_idx = i;
-
-        for(int j=i+1; j<arr.size(); j++){
-            if(cmp_desc(arr[j],arr[min_ele_idx])){
-                min_ele_idx = j;
+    for(int i = 1 ; i < arr.size(); i++){
+        int key = arr[i];
+        int curr;
+        for(curr = i-1 ; curr >= 0 ; curr--){
+            if(cmp_asc(key, arr[curr])){
+                arr[curr+1] = arr[curr];
+            }else{
+                break;
             }
         }
-
-        swap(arr[i], arr[min_ele_idx]);
+        arr[curr+1] = key;
     }
 }
 
 void sort(vector<int> &arr){
-    selection_sort(arr);
+    insertion_sort(arr);
 }
 
 int main(int argc, char **argv){
