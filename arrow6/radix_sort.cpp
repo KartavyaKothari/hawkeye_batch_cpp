@@ -22,7 +22,72 @@ int get_pv(int a, int p){
 // return get_pv(a,1) < get_pv(b,1);
 // }
 
+void display(vector<int> &arr){
+    for(int ele: arr){
+        cout<<ele<<" ";
+    }
+    cout<<endl;
+}
+
+void pv_counting_sort_unstable(vector<int> &arr, int p){
+    cout<<"Calling pv counting sort algorithm with p = "<<p<<endl;
+    map<int,unordered_map<int,int>> pv_buckets;
+
+    for(int ele: arr){
+        pv_buckets[get_pv(ele,p)][ele]++;
+    }
+
+    int idx = 0;
+
+    for(auto kv_pair : pv_buckets){
+        int pv_digit = kv_pair.first;
+        auto hm = kv_pair.second;
+
+        for(auto ele_freq_pair: hm){
+            int ele = ele_freq_pair.first;
+            int freq = ele_freq_pair.second;
+
+            while(freq){
+                arr[idx] = ele;
+                idx++;
+                freq--;
+            }
+        }
+    }
+}
+
+void pv_counting_sort(vector<int> &arr, int p){
+    cout<<"Calling pv counting sort algorithm with p = "<<p<<endl;
+    vector< pair<queue<int>,unordered_map<int,int>> > pv_buckets(10);
+
+    for(int ele: arr){
+        pv_buckets[get_pv(ele,p)].second[ele]++;
+        pv_buckets[get_pv(ele,p)].first.push(ele);
+    }
+
+    int idx = 0;
+
+    for(auto q_hm : pv_buckets){
+        auto q = q_hm.first;
+        auto hm = q_hm.second;
+        if(hm.empty()) continue;
+
+        while (!q.empty()){
+            int ele = q.front();
+            q.pop();
+            int freq = hm[ele];
+
+            while(freq){
+                arr[idx] = ele;
+                idx++;
+                freq--;
+            }
+        }
+    }
+}
+
 void pv_normal_sort(vector<int> &arr, int p){
+    cout<<"Calling pv normal sorting algorithm"<<endl;
     // auto cust_comp = [&](int a, int b){return a<b;};
 
     sort(
@@ -30,7 +95,7 @@ void pv_normal_sort(vector<int> &arr, int p){
         arr.end(), 
         [&](int a, int b){
             return get_pv(a,p)<get_pv(b,p);
-        }
+        }   
     );
 }
 
@@ -40,15 +105,10 @@ void radix_sort(vector<int> &arr){
     // cout<<max_num<<endl;
     // cout<<digits(max_num)<<endl;
     for(int p = 0 ; p < digits(max_num) ; p++){
-        pv_normal_sort(arr,p);
+        // pv_normal_sort(arr,p);
+        pv_counting_sort(arr,p);
+        display(arr);
     }
-}
-
-void display(vector<int> &arr){
-    for(int ele: arr){
-        cout<<ele<<" ";
-    }
-    cout<<endl;
 }
 
 int main(int argc, char **argv){
