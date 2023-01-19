@@ -1,13 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int max(int a, int b){
-    if (a>=b){
-        return a;
-    }
+// int max(int a, int b){
+//     if (a>=b){
+//         return a;
+//     }
 
-    return b;
-}
+//     return b;
+// }
 
 // int max(int a, int b, int c){
 //     if(a > b){
@@ -18,9 +18,9 @@ int max(int a, int b){
 //     return c;
 // }
 
-int max(int a, int b, int c, int d = INT32_MIN){
-    return max(max(a,b),max(c,d));
-}
+// int max(int a, int b, int c, int d = INT32_MIN){
+//     return max(max(a,b),max(c,d));
+// }
 
 int main(int argc, char **argv){
     int a = 20;

@@ -35,6 +35,8 @@ void merge(vector<int> &arr, int a, int b, int mid){
             arr[k] = arr1[i];
             i++;
             k++;
+
+            // arr[k++] = arr1[i++];
         }else{
             arr[k] = arr2[j];
             j++;

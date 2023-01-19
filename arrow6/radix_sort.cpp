@@ -58,7 +58,7 @@ void pv_counting_sort_unstable(vector<int> &arr, int p){
 
 void pv_counting_sort(vector<int> &arr, int p){
     cout<<"Calling pv counting sort algorithm with p = "<<p<<endl;
-    vector< pair<queue<int>,unordered_map<int,int>> > pv_buckets(10);
+    vector< int, pair<queue<int>,unordered_map<int,int>> > pv_buckets;
 
     for(int ele: arr){
         pv_buckets[get_pv(ele,p)].second[ele]++;
@@ -102,17 +102,19 @@ void pv_normal_sort(vector<int> &arr, int p){
 void radix_sort(vector<int> &arr){
     cout<<"Applying radix sort"<<endl;
     int max_num = *max_element(arr.begin(), arr.end());
+    string tmp;
     // cout<<max_num<<endl;
     // cout<<digits(max_num)<<endl;
     for(int p = 0 ; p < digits(max_num) ; p++){
         // pv_normal_sort(arr,p);
+        getline(cin,tmp);
         pv_counting_sort(arr,p);
         display(arr);
     }
 }
 
 int main(int argc, char **argv){
-    vector<int> arr = {1000,99,42,7089,6,1132,489,7,77};
+    vector<int> arr = {1000,99,42,7089,6,1132,489,7,77,};
     display(arr);
     radix_sort(arr);
     display(arr);
