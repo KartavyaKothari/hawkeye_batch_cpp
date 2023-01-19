@@ -12,6 +12,7 @@ class MaxHeap{
     }
 
     int get_parent(int child){
+        if(child == 0) return -1;
         return (child-1)/2;
     }
 
@@ -53,6 +54,7 @@ class MaxHeap{
         if(r_child < 0){
             if(is_cmp(harr[idx],harr[l_child]))
                 swap(harr[idx],harr[l_child]);
+            return;
         }
 
         if(is_cmp(harr[l_child],harr[r_child])){
@@ -77,11 +79,20 @@ class MaxHeap{
         //     if(is_cmp(harr[idx],harr[l_child]))
         //         swap(harr[idx],harr[l_child]);
 
-        // heapify_down();   
+        // heapify_down(l_child);
+        // heapify_down(r_child);   
     }
 
-    vector<int> build_heap(vector<int> &arr){
+    void build_heap_v1(){
+        for(int i = 0 ; i < harr.size() ; i++){
+            heapify_up(i);
+        }
+    }
 
+    void build_heap_v2(){
+        for(int i = harr.size(); i >= 1 ; i--){
+            heapify_down(i);
+        }
     }
     
     public:
@@ -91,7 +102,10 @@ class MaxHeap{
     }
 
     MaxHeap(vector<int> &arr){
-        harr = build_heap(arr);
+        heap_size = arr.size();
+        harr = vector<int>(arr.begin(),arr.end());
+        build_heap_v1();
+        // build_heap_v2();
     }
 
     void push(int data){
@@ -137,6 +151,14 @@ class MaxHeap{
 };
 
 int main(int argc, char **argv){
+    vector<int> arr = {6,3,7,1,2,3,8,9,7,4,5};
+    MaxHeap* hp = new MaxHeap(arr);
 
+    hp->push(10);
+    hp->push(11);
+    while(!hp->empty()){
+        cout<<hp->top()<<" ";
+        hp->pop();
+    }
     return 0;
 }
