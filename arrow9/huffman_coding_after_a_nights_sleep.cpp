@@ -33,6 +33,14 @@ class Compa{
     }
 };
 
+// auto comp = [&](Node* a, Node* b){return a->freq > b->freq;};
+
+// priority_queue<
+//         Node*,
+//         vector<Node*>,
+//         decltype(comp)
+//     > huff_heap(comp);
+
 class HuffmanTree{
     priority_queue<
         Node*,
@@ -68,6 +76,8 @@ class HuffmanTree{
     void encoder(Node* curr,string bin_code_till_now){
         if(curr == nullptr) return;
         if(curr->is_leaf) {
+            if(bin_code_till_now.size() == 0)
+                bin_code_till_now = "0";
             encoder_table[curr->alpha] = bin_code_till_now;
             return;
         }
@@ -111,9 +121,6 @@ class HuffmanTree{
 
         display_encoder();
     }
-
-    // ON A BREAK TILL 9:55
-
 };
 
 int main(int argc, char **argv){
