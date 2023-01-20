@@ -4,19 +4,26 @@ using namespace std;
 class Node{
     public:
     int freq;
-    vector<char> alphabets;
-    Node(char c){
-        alphabets.push_back(c);
-        freq = 1;
-    }
-    Node(int f, vector<char> alphas){
-        alphabets = alphas;
-        freq = f;
-    }
-};
+    bool is_leaf;
+    char alpha;
+    
+    Node* left;
+    Node* right;
 
-class LinkedTreeNode{
+    Node(int freq, char c){
+        freq = freq;
+        alpha = c;
+        is_leaf = true;
+        left = nullptr;
+        right = nullptr;
+    }
 
+    Node(Node* left, Node* right){
+        freq = left->freq+right->freq;
+        is_leaf = false;
+        left = left;
+        right = right;
+    }
 };
 
 auto comp = [&](Node* a, Node* b){return a->freq > b->freq;};
@@ -31,21 +38,21 @@ class HuffmanTree{
         // greater<int>()
     > huff_tree;
 
-    Node* combine_nodes(Node* first, Node* second){
-        vector<char> arr;
-        merge(
-                first->alphabets.begin(),
-                first->alphabets.end(),
-                second->alphabets.begin(),
-                second->alphabets.end(),
-                arr.begin()
-            );
+    // Node* combine_nodes(Node* first, Node* second){
+    //     vector<char> arr;
+    //     merge(
+    //             first->alphabets.begin(),
+    //             first->alphabets.end(),
+    //             second->alphabets.begin(),
+    //             second->alphabets.end(),
+    //             arr.begin()
+    //         );
 
-        return new Node(
-            first->freq+second->freq,
-            arr
-        );
-    }
+    //     return new Node(
+    //         first->freq+second->freq,
+    //         arr
+    //     );
+    // }
     public:
     void push(Node* node){
         huff_tree.push(node);
