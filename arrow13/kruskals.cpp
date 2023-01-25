@@ -13,7 +13,7 @@ void display(vector<vector<int>> &arr){
 
 int find_root(int ele,unordered_map<int,int> &parent){
     if(ele == parent[ele]) return ele;
-    return find_root(parent[ele],parent);
+    return parent[ele] = find_root(parent[ele],parent);
 }
 
 bool merge_set(int ele1, int ele2, unordered_map<int,int> &parent){
@@ -27,18 +27,14 @@ bool merge_set(int ele1, int ele2, unordered_map<int,int> &parent){
 
 vector<vector<int>> kruskals_mst(vector<vector<int>> &graph, int n){
     sort(graph.begin(), graph.end(), [&](auto a, auto b){return a[2]<b[2];});
-    // display(graph);
     vector<vector<int>> mst;
     unordered_map<int,int> parent;
 
-    for(int i = 0 ; i < n ; i++)
-        parent[i] = i;
+    for(int i = 0 ; i < n ; i++) parent[i] = i;
 
-    for(auto edge: graph){
-        if(merge_set(edge[0],edge[1],parent)){
+    for(auto edge: graph)
+        if(merge_set(edge[0],edge[1],parent))
             mst.push_back(edge);
-        }
-    }
 
     return mst;
 }
