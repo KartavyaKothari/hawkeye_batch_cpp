@@ -10,17 +10,20 @@ class Node{
 class Solution {
     Node* root;
 public:
+    void add_to_tree(string &word){
+        Node* q = root;
+        for(char c: word){
+            if(q->next[c-'a'] == nullptr){
+                q->next[c-'a'] == new Node();
+            }
+            q = q->next[c-'a'];
+        }
+        q->is_end = true;
+    }
     void buildTrie(vector<string>& wordDict){
         root = new Node();
-        Node* q = root;
         for(auto word: wordDict){
-            for(char c: word){
-                if(q->next[c-'a'] == nullptr){
-                    q->next[c-'a'] == new Node();
-                }
-                q = q->next[c-'a'];
-            }
-            q->is_end = true;
+            add_to_tree(word);
         }
     }
     bool find_word(string word){
