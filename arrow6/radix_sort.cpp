@@ -58,7 +58,7 @@ void pv_counting_sort_unstable(vector<int> &arr, int p){
 
 void pv_counting_sort(vector<int> &arr, int p){
     cout<<"Calling pv counting sort algorithm with p = "<<p<<endl;
-    vector< int, pair<queue<int>,unordered_map<int,int>> > pv_buckets;
+    vector< pair<queue<int>,unordered_map<int,int>> > pv_buckets;
 
     for(int ele: arr){
         pv_buckets[get_pv(ele,p)].second[ele]++;

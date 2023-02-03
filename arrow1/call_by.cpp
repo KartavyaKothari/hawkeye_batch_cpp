@@ -12,8 +12,8 @@ void kartavya_chit_fund_scheme(int *wallet) {
 }
 
 // pass by reference
-void koala_chit_fund_scheme(int &money){
-    money = money * 2;
+void koala_chit_fund_scheme(int &my){
+    my = my * 2;
 }
 
 void atm_balance(int money){

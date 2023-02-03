@@ -22,7 +22,6 @@ void bfs(int curr, UM<int, list<int>> &adj){
             }
         }
     }
-
 }
 
 void dfs_iterative(){

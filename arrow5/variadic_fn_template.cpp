@@ -8,7 +8,7 @@ void print_all(KOALA_DT data){
 
 template <typename KOALA_DT, typename... KOALA_DT2>
 void print_all(KOALA_DT data, KOALA_DT2... data2){
-    cout<<data<<endl;
+    print_all(data);
     print_all(data2...);
 }
 

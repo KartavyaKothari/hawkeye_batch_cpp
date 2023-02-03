@@ -38,8 +38,8 @@ class Queue{
 };
 
 int main(int argc, char **argv){
-    // Queue queue;
-    queue<int> queue;
+    Queue queue;
+    // queue<int> queue;
 
     queue.enqueue(1);
     queue.enqueue(2);
